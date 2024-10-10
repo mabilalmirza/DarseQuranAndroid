@@ -17,16 +17,16 @@ fun FileListScreen(context: Context, modifier: Modifier = Modifier) {
     LazyColumn(
         modifier = modifier
     ) {
-        items(audioFileList) { audioFile ->
-            AudioFileItem(audioFile)
-        }
+        items(audioFileList) { AudioFileItem(it) }
     }
 }
 
 @Composable
-fun AudioFileItem(audioFile: AudioFile) {
-    // Display audioFile details using Text composables
-    Text(text = audioFile.name)
+fun AudioFileItem(audioFile: AudioFile) {// Display audioFile details using Text composables
+
+    val title = audioFile.surah.joinToString(", ") { "${it.name} (${it.topic})" }
+
+    Text(text = title)
     Text(text = "Part: ${audioFile.part}")
     // ... other details
 }
