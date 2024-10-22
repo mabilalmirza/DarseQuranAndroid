@@ -22,11 +22,10 @@ fun FileListScreen(context: Context, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun AudioFileItem(audioFile: AudioFile) {// Display audioFile details using Text composables
+fun AudioFileItem(audioFile: AudioFile) {
 
-    val title = audioFile.surah.joinToString(", ") { "${it.name} (${it.topic})" }
+    audioFile.surah.forEach { surah ->
+        Text(text = "${surah.name} (${surah.topic})")
+    }
 
-    Text(text = title)
-    Text(text = "Part: ${audioFile.part}")
-    // ... other details
 }
