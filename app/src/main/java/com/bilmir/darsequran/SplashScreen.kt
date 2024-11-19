@@ -17,14 +17,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
-fun SplashScreen(onTimeout: () -> Unit) {
+fun SplashScreen(duration: Duration = 10.milliseconds, content: @Composable () -> Unit) {
     var showSplash by remember { mutableStateOf(true) }
 
     LaunchedEffect(key1 = true) {
-        delay(2.seconds)
+        delay(duration)
         showSplash = false
     }
 
@@ -40,6 +42,6 @@ fun SplashScreen(onTimeout: () -> Unit) {
             Text("Dr. Israr Ahmed", fontSize = 18.sp)
         }
     } else {
-        onTimeout()
+        content()
     }
 }
